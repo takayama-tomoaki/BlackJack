@@ -1,3 +1,5 @@
+import { suits, ranks } from "./Trump";
+
 /**
  * デッキ作成
  * -----
@@ -7,9 +9,7 @@
  * @return {Array<{suit: string, rank: string}>} deck
  */
 export function getDeck(numberOfDeck = 1) {
-  const suits = ["♠", "♣", "❤", "♦"];
-  const ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
-  let deck = [];
+  const deck = [];
 
   Array.from({ length: numberOfDeck }, () => {
     suits.forEach((suit) => {
