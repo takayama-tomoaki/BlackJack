@@ -6,6 +6,8 @@ import GameProgressButton from "./components/GameProgressButton";
 import * as BJUtils from "./utils/BlackJackUtils";
 
 /** デッキ初期値 */
+const initialDeck = BJUtils.getDeck(3);
+console.log(initialDeck);
 
 /** デッキ使用量 */
 
