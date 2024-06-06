@@ -7,13 +7,19 @@ import * as BJUtils from "./utils/BlackJackUtils";
 
 /** デッキ初期値 */
 const initialDeck = BJUtils.getDeck(3);
-console.log(initialDeck);
 
 /** デッキ使用量 */
 const penetration = 0.8;
-console.log(BJUtils.getMinimumNumber(initialDeck, penetration));
 
 /** 初期 state */
+const initialState = {
+  deck: initialDeck,
+  minimumNumber: BJUtils.getMinimumNumber(initialDeck, penetration),
+  dealersHand: [],
+  playersHand: [],
+  isPlayersTurnEnd: false,
+  isDealersTurnEnd: false
+};
 
 /**
  * レデューサー
@@ -60,6 +66,8 @@ function reducer(state, action) {
  * -----
  */
 export default function BlackJack() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   // カード初期化
   useEffect(() => {}, []);
 
