@@ -17,9 +17,6 @@ export default function App() {
       <Typography variant="h1">
         <Box className={"h1-header"}>BlackJack</Box>
       </Typography>
-      <Typography variant="h2">
-        <Box className={"h2-header"}>on Codesandbox</Box>
-      </Typography>
       <Box id="table">
       {isGameStart ? (
           <BlackJack />
