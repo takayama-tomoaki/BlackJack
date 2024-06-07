@@ -9,7 +9,8 @@ import * as BJUtils from "./utils/BlackJackUtils";
 const initialDeck = BJUtils.getDeck(3);
 
 /** デッキ使用量 */
-const penetration = 0.8;
+const penetration = 0.6;
+console.log(BJUtils.getMinimumNumber(initialDeck, penetration));
 
 /** 初期 state */
 const initialState = {
