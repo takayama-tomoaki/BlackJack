@@ -1,3 +1,5 @@
+import { suits, ranks } from "./Trump";
+
 /**
  * デッキ作成
  * -----
@@ -6,7 +8,19 @@
  * @param {number} numberOfDeck
  * @return {Array<{suit: string, rank: string}>} deck
  */
-export function getDeck(numberOfDeck = 1) {}
+export function getDeck(numberOfDeck = 1) {
+  const deck = [];
+
+  Array.from({ length: numberOfDeck }, () => {
+    suits.forEach((suit) => {
+      ranks.forEach((rank) => {
+        deck.push({ suit, rank });
+      });
+    });
+  });
+
+  return deck;
+}
 
 /**
  * デッキの最少枚数取得

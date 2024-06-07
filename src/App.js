@@ -6,18 +6,16 @@ import BlackJack from "./BlackJack";
 export default function App() {
   const [isGameStart, setIsGameStart] = useState(false);
 
-  function handleClick() {
-    setIsGameStart(true);
-  }
+  /**
+   * ゲームを開始状態にします。
+   */
+  const handleClick = () => setIsGameStart(true);
 
   // prettier-ignore
   return (
     <Box className="App">
       <Typography variant="h1">
         <Box className={"h1-header"}>BlackJack</Box>
-      </Typography>
-      <Typography variant="h2">
-        <Box className={"h2-header"}>on Codesandbox</Box>
       </Typography>
       <Box id="table">
       {isGameStart ? (
