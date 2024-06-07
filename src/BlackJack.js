@@ -10,7 +10,7 @@ const initialDeck = BJUtils.getDeck(3);
 console.log(initialDeck);
 
 /** デッキ使用量 */
-const penetration = 0.8;
+const penetration = 0.6;
 console.log(BJUtils.getMinimumNumber(initialDeck, penetration));
 
 /** 初期 state */

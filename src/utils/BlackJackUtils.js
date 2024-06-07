@@ -35,7 +35,7 @@ export function getMinimumNumber(initialDeck, penetration) {
   // デッキの合計枚数を計算
   const totalCards = initialDeck.length;
   // デッキの最少枚数を計算（小数点以下切り上げ）
-  const minimumNumber = Math.ceil(totalCards - totalCards * penetration);
+  const minimumNumber = Math.floor(totalCards - totalCards * penetration);
   // 計算した最少枚数を返却
   return minimumNumber;
 }
