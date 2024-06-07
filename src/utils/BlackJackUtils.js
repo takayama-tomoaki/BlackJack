@@ -1,12 +1,9 @@
 import { suits, ranks } from "./Trump";
 
 /**
- * デッキ作成
- * -----
- * 引数の数値のセット数でデッキを作成する
- *
- * @param {number} numberOfDeck
- * @return {Array<{suit: string, rank: string}>} deck
+ * デッキを作成します。
+ * @param numberOfDeck　セット数。
+ * @return 初期のデッキ
  */
 export function getDeck(numberOfDeck = 1) {
   const deck = [];
@@ -23,21 +20,13 @@ export function getDeck(numberOfDeck = 1) {
 }
 
 /**
- * デッキの最少枚数取得
- * -----
- * デッキの枚数の20%の値を返却する
- *
- * @param {Array<{suit: string, rank: string}>} initialDeck
- * @param {number} penetration
- * @return {number} minimumNumber
+ * デッキの最少枚数取得します。
+ * @param initialDeck　デッキ。
+ * @param penetration　デッキ使用量。
+ * @return デッキの最小枚数。
  */
 export function getMinimumNumber(initialDeck, penetration) {
-  // デッキの合計枚数を計算
-  const totalCards = initialDeck.length;
-  // デッキの最少枚数を計算（小数点以下切り上げ）
-  const minimumNumber = Math.floor(totalCards - totalCards * penetration);
-  // 計算した最少枚数を返却
-  return minimumNumber;
+  return initialDeck.length - Math.floor(initialDeck.length * penetration);
 }
 
 /**
