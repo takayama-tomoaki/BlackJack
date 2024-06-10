@@ -70,7 +70,13 @@ export default function BlackJack() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   // カード初期化
-  useEffect(() => {}, []);
+  useEffect(() => {
+    // ディーラーとプレイヤー、いずれかのハンドが 2枚より少なければ、以下の処理を行う
+    if (state.dealersHand.length < 2 || state.playersHand.length < 2) {
+      // 関数 dispatch() を、引数に {type: "init"} を渡して呼び出す
+      dispatch({ type: "init" });
+    }
+  }, [state.dealersHand, state.playersHand]);
 
   // ブラックジャックかどうかをチェック
   useEffect(() => {}, []);
