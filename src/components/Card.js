@@ -41,9 +41,9 @@ const useCardStyles = makeStyles({
  * @return {JSX.Element} カードコンポーネント
  */
 export default function Card(props) {
-  const classes = undefined;
-  const topAndBottom = undefined;
-  const middle = undefined;
+  const classes = useCardStyles(props);
+  const topAndBottom = props.card === null || props.hide === false ? "?" : props.card.suit + props.card.rank;
+  const middle = props.card === null || props.hide === false ? "?" : props.card.suit;
 
   return (
     <MuiCard className={classes.root}>
