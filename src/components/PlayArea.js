@@ -12,7 +12,7 @@ import * as BJUtils from "../utils/BlackJackUtils";
  * @return {JSX.Element} プレイエリアコンポーネント
  */
 export default function PlayArea(props) {
-  const classes = undefined;
+  const classes = useStyles();
 
   /**
    * ディーラー用チップ取得
@@ -34,18 +34,31 @@ export default function PlayArea(props) {
   return (
     <Box className={classes.playArea}>
       <Grid container direction="column" spacing={5} alignItems="center" justifyContent="center">
-        <Box className="arrow_box_common arrow_box_dealer" visibility="">
-          {/* Task 1 */}
-        </Box>
+        <Box className="arrow_box_common arrow_box_dealer" visibility=""></Box>
         <Grid item className={classes.cardArea}>
           <Grid container direction="row">
-            {/* Task 2 */}
+            {props.dealersHand.map((card, index) => {
+              let marginLeft = index === 0 ? "0px" : "-50px";
+              const hide = index === 1 && !props.isDealersTurnEnd;
+              return (
+                <Grid item key={index} style={{ marginLeft: marginLeft }}>
+                  <Card card={card} hide={hide} />
+                </Grid>
+              );
+            })}
           </Grid>
           <Box className={classes.winOrLoseContainer}>{getDealersChip()}</Box>
         </Grid>
         <Grid item className={classes.cardArea}>
           <Grid container direction="row">
-            {/* Task 3 */}
+            {props.playersHand.map((card, index) => {
+              let marginLeft = index === 0 ? "0px" : "-50px";
+              return (
+                <Grid item key={index} style={{ marginLeft: marginLeft }}>
+                  <Card card={card} />
+                </Grid>
+              );
+            })}
           </Grid>
           <Box className={classes.winOrLoseContainer}>{getPlayersChip()}</Box>
         </Grid>
