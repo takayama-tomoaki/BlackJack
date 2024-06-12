@@ -141,7 +141,12 @@ export default function BlackJack() {
       <div>
         <Toaster position="bottom-center" reverseOrder={false} />
       </div>
-      <PlayArea />
+      <PlayArea
+        dealersHand={state.dealersHand}
+        playersHand={state.playersHand}
+        isPlayersTurnEnd={state.isPlayersTurnEnd}
+        isDealersTurnEnd={state.isDealersTurnEnd}
+      />
       <Box>{getButtons()}</Box>
     </Box>
   );
