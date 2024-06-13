@@ -27,14 +27,24 @@ const initialState = {
  * -----
  * ゲームを進行するための処理を行う
  *
- * @param {object} state
- * @param {object} action
- * @return {object} state
+ * @param state ゲームの現在の状態を表すオブジェクト。各要素はカード（スートとランク）を表す。
+ * @param action プレイヤーの行動を表すオブジェクト。行動の種類（例： “hit”, "stand"など）。
+ * @return  更新後のゲームの状態を表すオブジェクト。
  */
 function reducer(state, action) {
   switch (action.type) {
     case "init": {
-      return { ...state };
+      // プレイヤーのハンドの枚数が 2枚より少なければ、以下の処理を行う
+      if (state.playersHand.length < 2) {
+        const [newDeck, newHand] = BJUtils.deal(state.deck, state.playersHand);
+        state = { ...state, deck: newDeck, playersHand: newHand };
+      }
+      // ディーラーのハンドの枚数が 2枚より少なければ、以下の処理を行う
+      if (state.dealersHand.length < 2) {
+        const [newDeck, newHand] = BJUtils.deal(state.deck, state.dealersHand);
+        state = { ...state, deck: newDeck, dealersHand: newHand };
+      }
+      return state;
     }
     case "hit": {
       return { ...state };
