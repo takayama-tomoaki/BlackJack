@@ -57,6 +57,10 @@ function reducer(state, action) {
     case "checkBlackJack": {
       return { ...state };
     }
+    case "try_reducer": {
+      console.log("new case now!");
+      return { ...state };
+    }
     default:
       return { ...state };
   }
@@ -77,6 +81,11 @@ export default function BlackJack() {
       dispatch({ type: "init" });
     }
   }, [state.dealersHand, state.playersHand]);
+
+  // #7
+  useEffect(() => {
+    dispatch({ type: "try_reducer" });
+  }, []);
 
   // ブラックジャックかどうかをチェック
   useEffect(() => {}, []);
