@@ -48,10 +48,11 @@ function reducer(state, action) {
       return state;
     }
     case "hit": {
-      return { ...state };
+      const [newDeck, newHand] = BJUtils.deal(state.deck, state.playersHand);
+      return { ...state, deck: newDeck, playersHand: newHand };
     }
     case "stand": {
-      return { ...state };
+      return { ...state, isPlayersTurnEnd: true };
     }
     case "checkPlayersHand": {
       return { ...state };
@@ -60,7 +61,7 @@ function reducer(state, action) {
       return { ...state };
     }
     case "next": {
-      return { ...state };
+      return { ...state, playersHand: [], dealersHand: [], isDealersTurnEnd: false, isPlayersTurnEnd: false };
     }
     case "shuffle": {
       return { ...state };
@@ -123,7 +124,7 @@ export default function BlackJack() {
    * STAND する
    */
   function doStand() {
-    console.log("case stand now!");
+    dispatch({ type: "stand" });
   }
 
   /**
