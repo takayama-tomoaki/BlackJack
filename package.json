@@ -11,6 +11,7 @@
     "@mui/system": "^5.15.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-hot-toast": "^2.4.1",
     "react-scripts": "^5.0.1"
   },
   "scripts": {
@@ -24,5 +25,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "eslint": "^8.57.0"
+  }
 }

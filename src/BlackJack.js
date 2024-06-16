@@ -4,6 +4,7 @@ import PlayArea from "./components/PlayArea";
 import BlackJackButtons from "./components/BlackJackButtons";
 import GameProgressButton from "./components/GameProgressButton";
 import * as BJUtils from "./utils/BlackJackUtils";
+import { Toaster } from "react-hot-toast";
 
 /** デッキ初期値 */
 const initialDeck = BJUtils.getDeck(3);
