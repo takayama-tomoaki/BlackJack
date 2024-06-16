@@ -11,6 +11,13 @@ const useCardStyles = makeStyles({
     height: "150px",
     color: (props) => {
       /* Task */
+      if (props.card === null || props.hide === true) {
+        return "black";
+      } else if (props.card.suit === "❤" || props.card.suit === "♦") {
+        return "red";
+      } else {
+        return "black";
+      }
     },
     border: "1px solid grey"
   },
