@@ -11,7 +11,9 @@ import { Box, Button } from "@mui/material";
 export default function GameProgressButton(props) {
   return (
     <Box mt={1}>
-      <Button variant="contained">{/* Task */}</Button>
+      <Button variant="contained" onClick={props.onClickNext}>
+        NEXT
+      </Button>
     </Box>
   );
 }
