@@ -112,21 +112,28 @@ export default function BlackJack() {
    * -----
    * HIT して、ハンドのスコアをチェックする
    */
-  function doHit() {}
+  function doHit() {
+    dispatch({ type: "hit" });
+    dispatch({ type: "checkPlayersHand" });
+  }
 
   /**
    * STAND する
    * -----
    * STAND する
    */
-  function doStand() {}
+  function doStand() {
+    console.log("case stand now!");
+  }
 
   /**
    * 次のターンに進む
    * -----
    * 次のターンに進む
    */
-  function next() {}
+  function next() {
+    dispatch({ type: "next" });
+  }
 
   /**
    * ボタン取得
