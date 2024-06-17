@@ -2,7 +2,7 @@ import { suits, ranks } from "./Trump";
 
 /**
  * デッキを作成します。
- * @param numberOfDeck　セット数。
+ * @param numberOfDeck セット数。
  * @return 初期のデッキ
  */
 export function getDeck(numberOfDeck = 1) {
@@ -21,8 +21,8 @@ export function getDeck(numberOfDeck = 1) {
 
 /**
  * デッキの最少枚数取得します。
- * @param initialDeck　デッキ。
- * @param penetration　デッキ使用量。
+ * @param initialDeck デッキ。
+ * @param penetration デッキ使用量。
  * @return デッキの最小枚数。
  */
 export function getMinimumNumber(initialDeck, penetration) {
@@ -37,7 +37,15 @@ export function getMinimumNumber(initialDeck, penetration) {
  * @param {string} rank
  * @return {number} rankNum
  */
-export function getRankNum(rank) {}
+export function getRankNum(rank) {
+  if (rank === "A") {
+    return 1;
+  } else if (["10", "J", "Q", "K"].includes(rank)) {
+    return 10;
+  } else {
+    return parseInt(rank, 10);
+  }
+}
 
 /**
  * ハンドのランクの合計取得
