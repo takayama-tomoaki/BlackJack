@@ -55,7 +55,14 @@ function reducer(state, action) {
       return { ...state, isPlayersTurnEnd: true };
     }
     case "checkPlayersHand": {
-      return { ...state };
+      const total = BJUtils.getTotal(state.playersHand);
+      if (total > 21) {
+        return { ...state, isDealersTurnEnd: true, isPlayersTurnEnd: true };
+      } else if (total === 21) {
+        return { ...state, isPlayersTurnEnd: true };
+      } else {
+        return { ...state };
+      }
     }
     case "dealersAction": {
       return { ...state };
