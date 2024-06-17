@@ -48,10 +48,11 @@ function reducer(state, action) {
       return state;
     }
     case "hit": {
-      return { ...state };
+      const [newDeck, newHand] = BJUtils.deal(state.deck, state.playersHand);
+      return { ...state, deck: newDeck, playersHand: newHand };
     }
     case "stand": {
-      return { ...state };
+      return { ...state, isPlayersTurnEnd: true };
     }
     case "checkPlayersHand": {
       return { ...state };
@@ -60,7 +61,7 @@ function reducer(state, action) {
       return { ...state };
     }
     case "next": {
-      return { ...state };
+      return { ...state, playersHand: [], dealersHand: [], isDealersTurnEnd: false, isPlayersTurnEnd: false };
     }
     case "shuffle": {
       return { ...state };
@@ -112,21 +113,28 @@ export default function BlackJack() {
    * -----
    * HIT して、ハンドのスコアをチェックする
    */
-  function doHit() {}
+  function doHit() {
+    dispatch({ type: "hit" });
+    dispatch({ type: "checkPlayersHand" });
+  }
 
   /**
    * STAND する
    * -----
    * STAND する
    */
-  function doStand() {}
+  function doStand() {
+    dispatch({ type: "stand" });
+  }
 
   /**
    * 次のターンに進む
    * -----
    * 次のターンに進む
    */
-  function next() {}
+  function next() {
+    dispatch({ type: "next" });
+  }
 
   /**
    * ボタン取得
