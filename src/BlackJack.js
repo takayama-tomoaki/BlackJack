@@ -135,7 +135,13 @@ export default function BlackJack() {
    *
    * @return {JSX.Element} ゲーム進行ボタンまたはブラックジャックボタン
    */
-  function getButtons() {}
+  function getButtons() {
+    if (state.isDealersTurnEnd && state.isPlayersTurnEnd) {
+      return <GameProgressButton onClick={next} />;
+    } else if (!state.isPlayersTurnEnd) {
+      return <BlackJackButtons onClickHit={doHit} onClickStand={doStand} />;
+    }
+  }
 
   return (
     <Box>
