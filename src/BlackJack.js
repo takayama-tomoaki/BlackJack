@@ -87,38 +87,32 @@ function reducer(state, action) {
 
 /**
  * BlackJack コンポーネント
- * -----
  */
 export default function BlackJack() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // カード初期化
+  // カードを初期化します。
   useEffect(() => {
-    // ディーラーとプレイヤー、いずれかのハンドが 2枚より少なければ、以下の処理を行う
     if (state.dealersHand.length < 2 || state.playersHand.length < 2) {
-      // 関数 dispatch() を、引数に {type: "init"} を渡して呼び出す
       dispatch({ type: "init" });
     }
   }, [state.dealersHand, state.playersHand]);
 
-  // #7
+  // ブラックジャックかどうかをチェックします。
+  useEffect(() => {}, []);
+
+  // プレイヤーのターンが終わったら、ディーラーのアクションを実行します。
   useEffect(() => {
-    dispatch({ type: "try_reducer" });
-  }, []);
+    if (state.isPlayersTurnEnd && !state.isDealersTurnEnd) {
+      dispatch({ type: "dealersAction" });
+    }
+  }, [state.isPlayersTurnEnd, state.isDealersTurnEnd, state.dealersHand]);
 
-  // ブラックジャックかどうかをチェック
-  useEffect(() => {}, []);
-
-  // プレイヤーのターンが終わったら、ディーラーのアクションを実行
-  useEffect(() => {}, []);
-
-  // シャッフルタイム
+  // シャッフルタイム。
   useEffect(() => {}, []);
 
   /**
-   * HITする
-   * -----
-   * HIT して、ハンドのスコアをチェックする
+   * HIT して、ハンドのスコアをチェックします。
    */
   function doHit() {
     dispatch({ type: "hit" });
@@ -126,30 +120,24 @@ export default function BlackJack() {
   }
 
   /**
-   * STAND する
-   * -----
-   * STAND する
+   * STAND します。
    */
   function doStand() {
     dispatch({ type: "stand" });
   }
 
   /**
-   * 次のターンに進む
-   * -----
-   * 次のターンに進む
+   * 次のターンに進みます。
    */
   function next() {
     dispatch({ type: "next" });
   }
 
   /**
-   * ボタン取得
-   * -----
-   * 現在のターンに従って、ゲーム進行ボタンまたはブラックジャックボタンを返却する
-   *
+   * 現在のターンに従って、ゲーム進行ボタンまたはブラックジャックボタンを返却します。
    * @return {JSX.Element} ゲーム進行ボタンまたはブラックジャックボタン
    */
+  // TODO: 戻り値 undefind でいいのか TS 変更後に確認。
   function getButtons() {
     if (state.isDealersTurnEnd && state.isPlayersTurnEnd) {
       return <GameProgressButton onClick={next} />;

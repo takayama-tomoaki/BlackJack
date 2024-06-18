@@ -10,14 +10,10 @@ const useCardStyles = makeStyles({
     width: "105px",
     height: "150px",
     color: (props) => {
-      /* Task */
       if (props.card === null || props.hide === true) {
         return "black";
-      } else if (props.card.suit === "❤" || props.card.suit === "♦") {
-        return "red";
-      } else {
-        return "black";
       }
+      return props.card.suit === "❤" || props.card.suit === "♦" ? "red" : "black";
     },
     border: "1px solid grey"
   },
@@ -42,11 +38,10 @@ const useCardStyles = makeStyles({
 
 /**
  * カードコンポーネント
- * -----
- *
- * @param {object} props
- * @return {JSX.Element} カードコンポーネント
+ * @param props 表示するカードの情報を含むオブジェクト。
+ * @return カードのスートとランクを表示します。
  */
+// TODO: props の型を定義する。
 export default function Card(props) {
   const classes = useCardStyles(props);
   const topAndBottom = props.card === null || props.hide === false ? "?" : props.card.suit + props.card.rank;
