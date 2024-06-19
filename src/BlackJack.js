@@ -145,7 +145,7 @@ export default function BlackJack() {
   // TODO: 戻り値 undefind でいいのか TS 変更後に確認。
   function getButtons() {
     if (state.isDealersTurnEnd && state.isPlayersTurnEnd) {
-      return <GameProgressButton onClick={next} />;
+      return <GameProgressButton onClickNext={next} />;
     } else if (!state.isPlayersTurnEnd) {
       return <BlackJackButtons onClickHit={doHit} onClickStand={doStand} />;
     }
