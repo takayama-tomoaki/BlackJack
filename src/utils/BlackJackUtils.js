@@ -97,14 +97,21 @@ export function deal(deck, hand) {
 export function hasAce(hand) {}
 
 /**
- * ディーラー用アクション判定
- * -----
- * ディーラーが HIT するべきかどうかを判定する
- *
- * @param {Array<{suit: string, rank: string}>} hand
- * @return {boolean} ディーラーが HIT するかどうか
+ * ディーラーが HIT するべきかどうかを判定します。
+ * @param hand ディーラーの現在のハンド。
+ * @return ディーラーが HIT を選択すべきかどうかの判定。
  */
-export function shouldHitForDealer(hand) {}
+export function shouldHitForDealer(hand) {
+  let total = getTotal(hand);
+
+  if (isSoftHand(hand)) {
+    total += 10;
+  }
+  if (total < 17) {
+    return true;
+  }
+  return false;
+}
 
 /**
  * Ace カード判定
