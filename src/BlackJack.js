@@ -65,7 +65,12 @@ function reducer(state, action) {
       }
     }
     case "dealersAction": {
-      return { ...state };
+      if (BJUtils.shouldHitForDealer(state.dealersHand)) {
+        const [newDeck, newHand] = BJUtils.deal(state.deck, state.dealersHand);
+        return { ...state, deck: newDeck, dealersHand: newHand };
+      } else {
+        return { ...state, isDealersTurnEnd: true };
+      }
     }
     case "next": {
       return { ...state, playersHand: [], dealersHand: [], isDealersTurnEnd: false, isPlayersTurnEnd: false };
