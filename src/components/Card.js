@@ -44,8 +44,8 @@ const useCardStyles = makeStyles({
 // TODO: props の型を定義する。
 export default function Card(props) {
   const classes = useCardStyles(props);
-  const topAndBottom = props.card === null || props.hide === false ? "?" : props.card.suit + props.card.rank;
-  const middle = props.card === null || props.hide === false ? "?" : props.card.suit;
+  const topAndBottom = props.card === null || props.hide ? "?" : props.card.suit + props.card.rank;
+  const middle = props.card === null || props.hide ? "?" : props.card.suit;
 
   return (
     <MuiCard className={classes.root}>
