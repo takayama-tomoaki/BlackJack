@@ -134,14 +134,22 @@ export function isAce(card) {}
 export function isFaceCardOrTen(card) {}
 
 /**
- * ソフトハンド判定
- * -----
- * 引数のハンドがソフトハンドかどうかを判定する
- *
- * @param {Array<{suit: string, rank: string}>} hand
- * @return {boolean} ソフトハンドかどうか
+ * 引数のハンドがソフトハンドかどうかを判定します。
+ * @param hand チェックするハンド。
+ * @return ハンドがソフトハンドであるかどうか。ソフトハンドであればtrue。
  */
-export function isSoftHand(hand) {}
+export function isSoftHand(hand) {
+  if (isBlackJack(hand)) {
+    return false;
+  }
+  if (!hasAce(hand)) {
+    return false;
+  }
+  if (getTotal(hand) + 10 < 21) {
+    return true;
+  }
+  return false;
+}
 
 /**
  * ブラックジャック判定
