@@ -114,29 +114,30 @@ export function shouldHitForDealer(hand) {
 }
 
 /**
- * Ace カード判定
- * -----
- * 引数のカードが Ace かどうかを判定する
- *
- * @param {{suit: string, rank: string}} card
- * @return {boolean} カードが Ace かどうか
+ * 引数のカードが Ace かどうかを判定します。
+ * @param card カードオブジェクト。
+ * @return カードが Ace かどうか。Ace であれば true。
  */
-export function isAce(card) {}
+export function isAce(card) {
+  if (card.rank === "A") {
+    return true;
+  }
+  return false;
+}
 
 /**
- * フェイスカード or 10 カード判定
- * -----
- * 引数のカードがフェイスガード（絵札）か 10 カードかどうかを判定する
- *
- * @param {{suit: string, rank: string}} card
- * @return {boolean} フェイスカードか 10 カードかどうか
+ * 引数のカードがフェイスガード（絵札）か 10 カードかどうかを判定します。
+ * @param card カードオブジェクト。
+ * @return フェイスカードか 10 カードかどうか。フェイスカードまたは10カードであれば true。
  */
-export function isFaceCardOrTen(card) {}
+export function isFaceCardOrTen(card) {
+  return getRankNum(card.rank) === 10;
+}
 
 /**
  * 引数のハンドがソフトハンドかどうかを判定します。
  * @param hand チェックするハンド。
- * @return ハンドがソフトハンドであるかどうか。ソフトハンドであればtrue。
+ * @return ハンドがソフトハンドであるかどうか。ソフトハンドであれば true。
  */
 export function isSoftHand(hand) {
   if (isBlackJack(hand)) {
@@ -154,7 +155,7 @@ export function isSoftHand(hand) {
 /**
  * 引数のハンドがブラックジャックかどうか判定します。
  * @param hand ブラックジャックかどうかを判定するハンド。
- * @return ハンドがブラックジャックであるかどうか。ブラックジャックであればtrue。
+ * @return ハンドがブラックジャックであるかどうか。ブラックジャックであれば true。
  */
 export function isBlackJack(hand) {
   if (hand.length !== 2) {
@@ -167,7 +168,6 @@ export function isBlackJack(hand) {
   if ((isAce(firstCard) && isFaceCardOrTen(secondCard)) || (isFaceCardOrTen(firstCard) && isAce(secondCard))) {
     return true;
   }
-
   return false;
 }
 
