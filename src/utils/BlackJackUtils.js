@@ -52,10 +52,16 @@ export function getRankNum(rank) {
  * -----
  * 引数のハンドの合計数値を返却する
  *
- * @param {Array<{suit: string, rank: string}>} hand
- * @return {number} total
+ * @param  hand ランクの合計を計算するカードの配列。
+ * @return ハンドのランクの合計値。
  */
-export function getTotal(hand) {}
+export function getTotal(hand) {
+  var total = 0;
+  for (var card of hand) {
+    total += getRankNum(card.rank);
+  }
+  return total;
+}
 
 /**
  * ディール（カードを配る）
