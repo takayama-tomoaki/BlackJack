@@ -38,7 +38,7 @@ export default function PlayArea(props) {
         <Grid item className={classes.cardArea}>
           <Grid container direction="row">
             {props.dealersHand.map((card, index) => {
-              let marginLeft = index === 0 ? "0px" : "-50px";
+              const marginLeft = index === 0 ? "0px" : "-50px";
               const hide = index === 1 && !props.isDealersTurnEnd;
               return (
                 <Grid item key={index} style={{ marginLeft: marginLeft }}>
