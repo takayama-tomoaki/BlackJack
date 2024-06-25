@@ -104,7 +104,11 @@ export default function BlackJack() {
   }, [state.dealersHand, state.playersHand]);
 
   // ブラックジャックかどうかをチェックします。
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (state.dealersHand.length === 2 && state.playersHand.length === 2) {
+      dispatch({ type: "checkBlackJack" });
+    }
+  }, [state.dealersHand, state.playersHand]);
 
   // プレイヤーのターンが終わったら、ディーラーのアクションを実行します。
   useEffect(() => {
