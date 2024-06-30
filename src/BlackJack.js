@@ -79,10 +79,9 @@ function reducer(state, action) {
       return { ...state };
     }
     case "checkBlackJack": {
-      return { ...state };
-    }
-    case "try_reducer": {
-      console.log("new case now!");
+      if (BJUtils.isBlackJack(state.playersHand) || BJUtils.isBlackJack(state.dealersHand)) {
+        return { ...state, isDealersTurnEnd: true, isPlayersTurnEnd: true };
+      }
       return { ...state };
     }
     default:

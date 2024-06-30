@@ -50,8 +50,8 @@ export function getRankNum(rank) {
  * @return ハンドのランクの合計値。
  */
 export function getTotal(hand) {
-  var total = 0;
-  for (var card of hand) {
+  let total = 0;
+  for (let card of hand) {
     total += getRankNum(card.rank);
   }
   return total;
