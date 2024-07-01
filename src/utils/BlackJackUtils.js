@@ -163,14 +163,23 @@ export function isBlackJack(hand) {
 }
 
 /**
- * ハンドのスコア取得
- * -----
- * 引数のハンドのスコアを返却する
- *
- * @param {Array<{suit: string, rank: string}>} hand
- * @return {Array<number>} ハンドのスコア
+ * 引数のハンドのスコアを返却します。
+ * @param hand スコアを計算するカードの配列。
+ * @return ハンドのスコア。
  */
-export function getScore(hand) {}
+export function getScore(hand) {
+  const scores = [];
+  const total = getTotal(hand);
+
+  if (isBlackJack(hand)) {
+    scores.push(21);
+  } else if (isSoftHand(hand)) {
+    scores.push(total, total + 10);
+  } else {
+    scores.push(total);
+  }
+  return scores;
+}
 
 /**
  * ハンドのスコア（表示用）取得
