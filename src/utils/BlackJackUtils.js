@@ -182,14 +182,18 @@ export function getScore(hand) {
 }
 
 /**
- * ハンドのスコア（表示用）取得
- * -----
- * 画面に表示するためのハンドのスコアを返却する
- *
- * @param {Array<{suit: string, rank: string}>} hand
- * @return {string}
+ * 画面に表示するためのハンドのスコアを返却します。
+ * @param hand スコアを計算するカードの配列。
+ * @return ハンドのスコアを表す文字列。
  */
-export function getScoreForDisplay(hand) {}
+export function getScoreForDisplay(hand) {
+  const score = getScore(hand);
+
+  if (isSoftHand(hand)) {
+    return `${score[0]} | ${score[1]}`;
+  }
+  return score[0];
+}
 
 /**
  * ハンドの最終スコア取得
