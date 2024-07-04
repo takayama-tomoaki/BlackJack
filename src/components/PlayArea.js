@@ -15,20 +15,22 @@ export default function PlayArea(props) {
   const classes = useStyles();
 
   /**
-   * ディーラー用チップ取得
-   * -----
-   * ディーラーがブラックジャックまたはバーストしたかを表示する Chip コンポーネントを返却する
-   *
-   * @return {Chip} Chip
+   * ディーラーがブラックジャックまたはバーストしたかを表示する Chip コンポーネントを返却します。
+   * @return ディーラーの状態を表示するチップコンポーネント。
    */
-  function getDealersChip() {}
+  function getDealersChip() {
+    if (BJUtils.isBlackJack(props.dealersHand)) {
+      return <Chip label="BLACK JACK!!" className={classes.winOrLose} />;
+    } else if (BJUtils.getTotal(props.dealersHand) > 21) {
+      return <Chip label="BUSTED!!" className={classes.winOrLose} />;
+    } else {
+      return null;
+    }
+  }
 
   /**
-   * プレイヤー用チップ取得
-   * -----
-   * プレイヤーの勝敗、ブラックジャックまたはバーストしたかどうかを表示するチップを返却する
-   *
-   * @return {Chip} Chip
+   * プレイヤーの勝敗、ブラックジャックまたはバーストしたかどうかを表示するチップを返却します。
+   * @return プレイヤーの状態とゲームの結果を表示するチップコンポーネント。
    */
   function getPlayersChip() {
     if (BJUtils.getTotal(props.playersHand) > 21) {
