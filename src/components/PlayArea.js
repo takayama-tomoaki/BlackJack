@@ -30,7 +30,15 @@ export default function PlayArea(props) {
    *
    * @return {Chip} Chip
    */
-  function getPlayersChip() {}
+  function getPlayersChip() {
+    if (BJUtils.getTotal(props.playersHand) > 21) {
+      return <Chip label="BUSTED!!" className={classes.winOrLose} />;
+    } else if (props.isPlayersTurnEnd) {
+      return <Chip label={BJUtils.judge(props.dealersHand, props.playersHand)} className={classes.winOrLose} />;
+    } else {
+      return null;
+    }
+  }
   return (
     <Box className={classes.playArea}>
       <Grid container direction="column" spacing={5} alignItems="center" justifyContent="center">
