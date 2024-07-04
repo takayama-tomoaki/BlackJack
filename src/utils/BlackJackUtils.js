@@ -200,14 +200,19 @@ export function getScoreForDisplay(hand) {
 }
 
 /**
- * ハンドの最終スコア取得
- * -----
- * 引数のハンドの最終的なスコアを返却する
- *
- * @param {Array<{suit: string, rank: string}>} hand
- * @return {number} score
+ * 引数のハンドの最終的なスコアを返却します。
+ * @param hand スコアを計算するカードの配列。
+ * @return ハンドの最終的なスコア。
  */
-export function getLastScore(hand) {}
+export function getLastScore(hand) {
+  const score = getScore(hand);
+
+  if (isSoftHand(hand)) {
+    return score[1];
+  } else {
+    return score[0];
+  }
+}
 
 /**
  * プレイヤーとディーラーの勝敗を判定します。
