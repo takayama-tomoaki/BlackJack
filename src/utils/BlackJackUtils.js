@@ -210,12 +210,28 @@ export function getScoreForDisplay(hand) {
 export function getLastScore(hand) {}
 
 /**
- * 勝敗判定
- * -----
- * プレイヤーとディーラーの勝敗を判定する
- *
- * @param {Array<{suit: string, rank: string}>} dealersHand
- * @param {Array<{suit: string, rank: string}>} playersHand
- * @return {string} 勝敗文字列
+ * プレイヤーとディーラーの勝敗を判定します。
+ * @param dealersHand ディーラーの手札。
+ * @param playersHand プレイヤーの手札。
+ * @return  勝敗文字列
  */
-export function judge(dealersHand, playersHand) {}
+export function judge(dealersHand, playersHand) {
+  const dealersScore = getLastScore(dealersHand);
+  const playersScore = getLastScore(playersHand);
+
+  if (playersScore > 21) {
+    return "LOSE!!";
+  } else if (playersScore === dealersScore) {
+    return "PUSH";
+  } else if (isBlackJack(playersHand)) {
+    return "BLACK JACK!!";
+  } else if (isBlackJack(dealersHand)) {
+    return "LOSE!!";
+  } else if (dealersScore > 21) {
+    return "WIN!!";
+  } else if (playersScore > dealersScore) {
+    return "WIN!!";
+  } else {
+    return "LOSE!!";
+  }
+}
