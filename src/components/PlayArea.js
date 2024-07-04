@@ -34,7 +34,9 @@ export default function PlayArea(props) {
   return (
     <Box className={classes.playArea}>
       <Grid container direction="column" spacing={5} alignItems="center" justifyContent="center">
-        <Box className="arrow_box_common arrow_box_dealer" visibility=""></Box>
+        <Box className="arrow_box_common arrow_box_dealer" visibility={props.isPlayersTurnEnd ? "visible" : "hidden"}>
+          {props.dealersHand.length >= 2 && BJUtils.getScoreForDisplay(props.dealersHand)}
+        </Box>
         <Grid item className={classes.cardArea}>
           <Grid container direction="row">
             {props.dealersHand.map((card, index) => {
