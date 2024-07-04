@@ -152,14 +152,24 @@ export function isSoftHand(hand) {
 }
 
 /**
- * ブラックジャック判定
- * -----
- * 引数のハンドがブラックジャックかどうか判定する
- *
- * @param {Array<{suit: string, rank: string}>} hand
- * @return {boolean} ブラックジャックかどうか
+ * 引数のハンドがブラックジャックかどうか判定します。
+ * @param hand ブラックジャックかどうかを判定するハンド。
+ * @return ハンドがブラックジャックであるかどうか。ブラックジャックであればtrue。
  */
-export function isBlackJack(hand) {}
+export function isBlackJack(hand) {
+  if (hand.length !== 2) {
+    return false;
+  }
+
+  const firstCard = hand[0];
+  const secondCard = hand[1];
+
+  if ((isAce(firstCard) && isFaceCardOrTen(secondCard)) || (isFaceCardOrTen(firstCard) && isAce(secondCard))) {
+    return true;
+  }
+
+  return false;
+}
 
 /**
  * ハンドのスコア取得
