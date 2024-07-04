@@ -62,7 +62,9 @@ export default function PlayArea(props) {
           </Grid>
           <Box className={classes.winOrLoseContainer}>{getPlayersChip()}</Box>
         </Grid>
-        <Box className="arrow_box_common arrow_box_player">{/* Task 4 */}</Box>
+        <Box className="arrow_box_common arrow_box_player">
+          {props.playersHand.length >= 2 && BJUtils.getScoreForDisplay(props.playersHand)}
+        </Box>
       </Grid>
     </Box>
   );
