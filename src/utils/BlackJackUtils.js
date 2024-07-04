@@ -78,14 +78,18 @@ export function deal(deck, hand) {
 }
 
 /**
- * Ace 所持確認
- * -----
- * ハンドの中に Ace が含まれているかどうかを判定する
- *
- * @param {Array<{suit: string, rank: string}>} hand
- * @return {boolean} Ace を持っているかどうか
+ * ハンドの中に Ace が含まれているかどうかを判定します。
+ * @param hand 判定するカードの配列。
+ * @return  Ace を持っているかどうかの判定。
  */
-export function hasAce(hand) {}
+export function hasAce(hand) {
+  for (let card of hand) {
+    if (card.rank === "A") {
+      return true;
+    }
+  }
+  return false;
+}
 
 /**
  * ディーラーが HIT するべきかどうかを判定します。
