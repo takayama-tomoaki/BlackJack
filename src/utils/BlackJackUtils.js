@@ -30,12 +30,9 @@ export function getMinimumNumber(initialDeck, penetration) {
 }
 
 /**
- * ランクの数値取得
- * -----
- * 引数のランクに対応する数値を返却する
- *
- * @param {string} rank
- * @return {number} rankNum
+ * 引数のランクに対応する数値を返却します。
+ * @param rank カードのランク。
+ * @return ランクに対応する数値。
  */
 export function getRankNum(rank) {
   if (rank === "A") {
@@ -48,10 +45,7 @@ export function getRankNum(rank) {
 }
 
 /**
- * ハンドのランクの合計取得
- * -----
- * 引数のハンドの合計数値を返却する
- *
+ * 引数のハンドの合計数値を返却します。
  * @param  hand ランクの合計を計算するカードの配列。
  * @return ハンドのランクの合計値。
  */
@@ -64,10 +58,7 @@ export function getTotal(hand) {
 }
 
 /**
- * ディール（カードを配る）
- * -----
- * 山札からカードを一枚引いて、ハンドに加える。
- *
+ * 山札からカードを一枚引いて、ハンドに加えます。
  * @param deck 山札。各要素はカード（スートとランク）を表すオブジェクト。
  * @param  hand ハンド（プレイヤーが持っているカード）。各要素はカード（スートとランク）を表すオブジェクト。
  * @returns 新しい山札と新しいハンド。山札から一枚カードを引いてハンドに加えた結果。
