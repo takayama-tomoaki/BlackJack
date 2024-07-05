@@ -83,7 +83,7 @@ export function deal(deck, hand) {
  * @return  Ace を持っているかどうかの判定。
  */
 export function hasAce(hand) {
-  for (let card of hand) {
+  for (const card of hand) {
     if (card.rank === "A") {
       return true;
     }
@@ -225,18 +225,18 @@ export function judge(dealersHand, playersHand) {
   const playersScore = getLastScore(playersHand);
 
   if (playersScore > 21) {
-    return "LOSE!!";
+    return "敗北…";
   } else if (playersScore === dealersScore) {
-    return "PUSH";
+    return "引き分け";
   } else if (isBlackJack(playersHand)) {
     return "BLACK JACK!!";
   } else if (isBlackJack(dealersHand)) {
-    return "LOSE!!";
+    return "敗北…";
   } else if (dealersScore > 21) {
-    return "WIN!!";
+    return "勝利!!";
   } else if (playersScore > dealersScore) {
-    return "WIN!!";
+    return "勝利!!";
   } else {
-    return "LOSE!!";
+    return "敗北…";
   }
 }

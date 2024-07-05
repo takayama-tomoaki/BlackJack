@@ -22,9 +22,9 @@ export default function PlayArea(props) {
     if (BJUtils.isBlackJack(props.dealersHand)) {
       return <Chip label="BLACK JACK!!" className={classes.winOrLose} />;
     } else if (BJUtils.getTotal(props.dealersHand) > 21) {
-      return <Chip label="BUSTED!!" className={classes.winOrLose} />;
+      return <Chip label="バースト!!" className={classes.winOrLose} />;
     } else {
-      return null;
+      return <></>;
     }
   }
 
@@ -34,11 +34,11 @@ export default function PlayArea(props) {
    */
   function getPlayersChip() {
     if (BJUtils.getTotal(props.playersHand) > 21) {
-      return <Chip label="BUSTED!!" className={classes.winOrLose} />;
+      return <Chip label="バースト!!" className={classes.winOrLose} />;
     } else if (props.isPlayersTurnEnd) {
       return <Chip label={BJUtils.judge(props.dealersHand, props.playersHand)} className={classes.winOrLose} />;
     } else {
-      return null;
+      return <></>;
     }
   }
   return (
