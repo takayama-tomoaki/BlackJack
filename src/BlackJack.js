@@ -75,7 +75,8 @@ function reducer(state, action) {
       return { ...state, playersHand: [], dealersHand: [], isDealersTurnEnd: false, isPlayersTurnEnd: false };
     }
     case "shuffle": {
-      return { ...state };
+      const newDeck = BJUtils.getDeck(3);
+      return { ...state, deck: newDeck };
     }
     case "checkBlackJack": {
       if (BJUtils.isBlackJack(state.playersHand) || BJUtils.isBlackJack(state.dealersHand)) {
