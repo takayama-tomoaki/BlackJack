@@ -4,7 +4,7 @@ import PlayArea from "./components/PlayArea";
 import BlackJackButtons from "./components/BlackJackButtons";
 import GameProgressButton from "./components/GameProgressButton";
 import * as BJUtils from "./utils/BlackJackUtils";
-import { Toaster } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 
 /** デッキ初期値 */
 const initialDeck = BJUtils.getDeck(3);
@@ -116,7 +116,18 @@ export default function BlackJack() {
   }, [state.isPlayersTurnEnd, state.isDealersTurnEnd, state.dealersHand]);
 
   // シャッフルタイム。
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (state.deck.length <= state.minimumNumber) {
+      dispatch({ type: "shuffle" });
+      toast("Shuffled!!", {
+        style: {
+          borderRadius: "10px",
+          background: "#737373",
+          color: "#ffffff"
+        }
+      });
+    }
+  }, [state.deck, state.minimumNumber]);
 
   /**
    * HIT して、ハンドのスコアをチェックします。
