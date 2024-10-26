@@ -1,10 +1,10 @@
-import React, { useEffect, useReducer } from "react";
 import { Box } from "@mui/material";
-import PlayArea from "./components/PlayArea";
+import React, { useEffect, useReducer } from "react";
+import { Toaster, toast } from "react-hot-toast";
 import BlackJackButtons from "./components/BlackJackButtons";
 import GameProgressButton from "./components/GameProgressButton";
+import PlayArea from "./components/PlayArea";
 import * as BJUtils from "./utils/BlackJackUtils";
-import { Toaster, toast } from "react-hot-toast";
 
 /** デッキ初期値 */
 const initialDeck = BJUtils.getDeck(3);
@@ -92,7 +92,7 @@ function reducer(state, action) {
 /**
  * BlackJack コンポーネント
  */
-export default function BlackJack() {
+export default function BlackJack({ betAmount, handleBetAmountChange }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   // カードを初期化します。
@@ -159,9 +159,11 @@ export default function BlackJack() {
   // TODO: 戻り値 undefind でいいのか TS 変更後に確認。
   function getButtons() {
     if (state.isDealersTurnEnd && state.isPlayersTurnEnd) {
-      return <GameProgressButton onClickNext={next} />;
+      return (
+        <GameProgressButton onClickNext={next} betAmount={betAmount} handleBetAmountChange={handleBetAmountChange} />
+      );
     } else if (!state.isPlayersTurnEnd) {
-      return <BlackJackButtons onClickHit={doHit} onClickStand={doStand} />;
+      return <BlackJackButtons onClickHit={doHit} onClickStand={doStand} betAmount={betAmount} />;
     }
   }
 
