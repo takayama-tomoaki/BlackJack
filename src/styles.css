@@ -19,6 +19,10 @@ html {
   margin-top: 0;
   color: #f8f4e6;
 }
+.bet {
+  font-size: 24px;
+  color: #f8f4e6;
+}
 
 #table {
   width: 95%;
@@ -27,6 +31,12 @@ html {
   border: 5px solid #595857;
   border-radius: 5px;
   margin: auto;
+}
+
+.boxColor {
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .center-button {
