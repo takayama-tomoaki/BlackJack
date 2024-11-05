@@ -1,4 +1,9 @@
-import { suits, ranks } from "./Trump";
+import { ranks, suits } from "./Trump";
+
+const lose = "敗北…";
+const win = "勝利!!";
+const blackJack = "BLACK JACK!!";
+const draw = "引き分け";
 
 /**
  * デッキを作成します。
@@ -225,18 +230,67 @@ export function judge(dealersHand, playersHand) {
   const playersScore = getLastScore(playersHand);
 
   if (playersScore > 21) {
-    return "敗北…";
+    return lose;
   } else if (playersScore === dealersScore) {
-    return "引き分け";
+    return draw;
   } else if (isBlackJack(playersHand)) {
-    return "BLACK JACK!!";
+    return blackJack;
   } else if (isBlackJack(dealersHand)) {
-    return "敗北…";
+    return lose;
   } else if (dealersScore > 21) {
-    return "勝利!!";
+    return win;
   } else if (playersScore > dealersScore) {
-    return "勝利!!";
+    return win;
   } else {
-    return "敗北…";
+    return lose;
+  }
+}
+
+/**
+ * 払い戻し金を計算します。
+ * @param dealersHand ディーラーの手札。
+ * @param playersHand プレイヤーの手札。
+ * @param betAmount 掛け金
+ * @param money 所持金
+ * @returns 計算結果
+ */
+export function calculatePayOut(dealersHand, playersHand, betAmount, money) {
+  const result = judge(dealersHand, playersHand);
+
+  switch (result) {
+    case lose:
+      return money - betAmount;
+    case draw:
+      return money;
+    case blackJack:
+      return money + betAmount * 2;
+    case win:
+      return money + betAmount * 2;
+    default:
+      throw new Error("不正な結果");
+  }
+}
+
+/**
+ * 払い戻し金の値を取得します。
+ * @param dealersHand ディーラーの手札。
+ * @param playersHand プレイヤーの手札。
+ * @param betAmount 掛け金
+ * @returns 払い戻し金。
+ */
+export function getPayOutMoneyString(dealersHand, playersHand, betAmount) {
+  const result = judge(dealersHand, playersHand);
+
+  switch (result) {
+    case lose:
+      return `-${betAmount}`;
+    case draw:
+      return `±０`;
+    case blackJack:
+      return `+${betAmount * 2}`;
+    case win:
+      return `+${betAmount * 2}`;
+    default:
+      throw new Error("不正な結果");
   }
 }

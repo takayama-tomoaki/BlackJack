@@ -8,7 +8,6 @@ import "./styles.css";
 export default function App() {
   const [isGameStart, setIsGameStart] = useState(false);
   const [betAmount, setBetAmount] = useState(1000);
-  const [money, setMoney] = useState(100000);
 
   const handleBetAmountChange = (event, value) => {
     setBetAmount(value);
@@ -37,7 +36,7 @@ export default function App() {
             <Box mt={1} display="flex" flexDirection="row" justifyContent="space-around" style={{ marginTop: -200 }}>
               <ValueBox text={`掛け金：${betAmount}`} />
               <Box mx={1}>
-                <ValueBox text={`所持金：${money}`} />
+                <ValueBox text={`所持金：${100000}`} />
               </Box>
             </Box>
           </>

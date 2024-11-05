@@ -44,7 +44,7 @@ export default function BlackJackButtons(props) {
           <ValueBox text={`掛け金：${props.betAmount}`} />
         </Box>
         <Box mx={1}>
-          <ValueBox text={`所持金：`} />
+          <ValueBox text={`所持金：${props.money}`} />
         </Box>
       </Box>
     </>
