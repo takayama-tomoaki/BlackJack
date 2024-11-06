@@ -16,7 +16,7 @@ export default function GameProgressButton(props) {
     <>
       <Box display="flex" flexDirection="row" justifyContent="center" mt={1}>
         <Box mx={1}>
-          <EndButton />
+          <EndButton money={props.money} />
         </Box>
         <Box mx={1}>
           <SettingButton betAmount={props.betAmount} handleBetAmountChange={props.handleBetAmountChange} />

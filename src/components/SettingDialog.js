@@ -24,7 +24,7 @@ const SettingDialog = ({ isOpen, onClose, betAmount, onChange }) => {
       <DialogTitle>掛け金設定</DialogTitle>
       <DialogContent>
         <DialogContentText>
-          <Typography id="bet_amount">bet: {betAmount}</Typography>
+          <Typography id="bet_amount">掛け金: {betAmount}</Typography>
         </DialogContentText>
         <Slider value={betAmount} min={0} max={10000} step={100} onChange={onChange} />
       </DialogContent>
