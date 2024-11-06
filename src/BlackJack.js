@@ -98,8 +98,8 @@ export default function BlackJack({ betAmount, handleBetAmountChange }) {
 
   useEffect(() => {
     if (state.isDealersTurnEnd && state.isPlayersTurnEnd) {
-      const calculateMoney = BJUtils.calculatePayOut(state.dealersHand, state.playersHand, betAmount, money);
-      setMoney(calculateMoney);
+      const calculatePayout = BJUtils.calculatePayOut(state.dealersHand, state.playersHand, betAmount, money);
+      setMoney(calculatePayout);
     }
   }, [state.isDealersTurnEnd, state.isPlayersTurnEnd]);
 

@@ -1,5 +1,5 @@
 import { Box, Chip, Grid } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useStyles } from "../hooks/useStyles";
 import * as BJUtils from "../utils/BlackJackUtils";
 import Card from "./Card";
@@ -13,6 +13,11 @@ import Card from "./Card";
  */
 export default function PlayArea(props) {
   const classes = useStyles();
+  const [payOutMoney, setPayOutMoney] = useState("");
+
+  useEffect(() => {
+    setPayOutMoney(BJUtils.getPayOutMoneyString(props.dealersHand, props.playersHand, props.betAmount));
+  }, [props.dealersHand, props.playersHand]);
 
   /**
    * ディーラーがブラックジャックまたはバーストしたかを表示する Chip コンポーネントを返却します。
@@ -76,7 +81,7 @@ export default function PlayArea(props) {
         </Grid>
         <Box className="arrow_box_common arrow_box_player">
           {props.isDealersTurnEnd && props.isPlayersTurnEnd
-            ? BJUtils.getPayOutMoneyString(props.dealersHand, props.playersHand, props.betAmount)
+            ? payOutMoney
             : props.playersHand.length >= 2 && BJUtils.getScoreForDisplay(props.playersHand)}
         </Box>
       </Grid>
