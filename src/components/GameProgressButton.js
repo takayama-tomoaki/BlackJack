@@ -1,5 +1,6 @@
 import { Box, Button } from "@mui/material";
 import React from "react";
+import EndButton from "./EndBurron";
 import SettingButton from "./SettingButton";
 import ValueBox from "./ValueBox";
 
@@ -15,6 +16,9 @@ export default function GameProgressButton(props) {
     <>
       <Box display="flex" flexDirection="row" justifyContent="center" mt={1}>
         <Box mx={1}>
+          <EndButton money={props.money} />
+        </Box>
+        <Box mx={1}>
           <SettingButton betAmount={props.betAmount} handleBetAmountChange={props.handleBetAmountChange} />
         </Box>
         <Box mx={1}>
@@ -28,7 +32,7 @@ export default function GameProgressButton(props) {
           <ValueBox text={`掛け金：${props.betAmount}`} />
         </Box>
         <Box mx={1}>
-          <ValueBox text={`所持金：`} />
+          <ValueBox text={`所持金：${props.money}`} />
         </Box>
       </Box>
     </>
