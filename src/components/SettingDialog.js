@@ -12,19 +12,21 @@ import React from "react";
 
 /**
  * 掛け金設定のダイアログのコンポーネント。
- * @param isOpen 開いているかどうか。
- * @param onClose 閉じるための関数。
- * @param betAmount 掛け金。
- * @param onChange 掛け金変更する関数。
- * @returns
+ * @param {boolean} isOpen 開いているかどうか。
+ * @param {function} onClose 閉じるための関数。
+ * @param {number} betAmount 掛け金。
+ * @param {function} onChange 掛け金変更する関数。
+ * @returns {JSX.Element} 掛け金設定のダイアログのコンポーネント。
  */
 const SettingDialog = ({ isOpen, onClose, betAmount, onChange }) => {
   return (
     <Dialog open={isOpen} onClose={onClose} fullWidth={true} maxWidth="sm">
       <DialogTitle>掛け金設定</DialogTitle>
       <DialogContent>
-        <DialogContentText>
-          <Typography id="bet_amount">掛け金: {betAmount}</Typography>
+        <DialogContentText component="span">
+          <Typography id="bet_amount" component="span">
+            掛け金: {betAmount}
+          </Typography>
         </DialogContentText>
         <Slider value={betAmount} min={100} max={10000} step={100} onChange={onChange} />
       </DialogContent>
