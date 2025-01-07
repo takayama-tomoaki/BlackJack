@@ -23,8 +23,17 @@ const RankingDialog = ({ open, onClose }) => {
   };
 
   const handleInputClose = () => {
+    if (name.trim() === "") {
+      alert("ニックネームを入力してください。");
+      return;
+    }
     setOpenInput(false);
     // スコアを記録する処理をここに追加
+    navigate(`/Ranking`);
+  };
+
+  const handleCancel = () => {
+    setOpenInput(false);
     navigate(`/Ranking`);
   };
 
@@ -59,7 +68,10 @@ const RankingDialog = ({ open, onClose }) => {
             inputProps={{ maxLength: 10 }}
           />
         </DialogContent>
-        <DialogActions>
+        <DialogActions style={{ justifyContent: "space-between" }}>
+          <Button onClick={handleCancel} color="secondary">
+            スコアを記録せずランキングを確認する
+          </Button>
           <Button onClick={handleInputClose} color="primary">
             確定
           </Button>
