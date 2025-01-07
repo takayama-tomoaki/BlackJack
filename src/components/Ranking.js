@@ -30,7 +30,7 @@ const Ranking = () => {
   return (
     <Box className="App">
       <Typography variant="h1">
-        <Box className={"h1-header"}>最終所持金ランキング</Box>
+        <Box className={"h1-header"}>スコアランキング</Box>
       </Typography>
       <Box id="table">
         <Box mt={10}>
