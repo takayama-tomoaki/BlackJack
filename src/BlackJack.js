@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import BlackJackButtons from "./components/BlackJackButtons";
 import GameProgressButton from "./components/GameProgressButton";
@@ -94,6 +94,14 @@ function reducer(state, action) {
  */
 export default function BlackJack({ betAmount, handleBetAmountChange }) {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [money, setMoney] = useState(100000);
+
+  useEffect(() => {
+    if (state.isDealersTurnEnd && state.isPlayersTurnEnd) {
+      const calculatePayout = BJUtils.calculatePayOut(state.dealersHand, state.playersHand, betAmount, money);
+      setMoney(calculatePayout);
+    }
+  }, [state.isDealersTurnEnd, state.isPlayersTurnEnd]);
 
   // カードを初期化します。
   useEffect(() => {
@@ -160,10 +168,15 @@ export default function BlackJack({ betAmount, handleBetAmountChange }) {
   function getButtons() {
     if (state.isDealersTurnEnd && state.isPlayersTurnEnd) {
       return (
-        <GameProgressButton onClickNext={next} betAmount={betAmount} handleBetAmountChange={handleBetAmountChange} />
+        <GameProgressButton
+          onClickNext={next}
+          betAmount={betAmount}
+          handleBetAmountChange={handleBetAmountChange}
+          money={money}
+        />
       );
     } else if (!state.isPlayersTurnEnd) {
-      return <BlackJackButtons onClickHit={doHit} onClickStand={doStand} betAmount={betAmount} />;
+      return <BlackJackButtons onClickHit={doHit} onClickStand={doStand} betAmount={betAmount} money={money} />;
     }
   }
 
@@ -177,6 +190,7 @@ export default function BlackJack({ betAmount, handleBetAmountChange }) {
         playersHand={state.playersHand}
         isPlayersTurnEnd={state.isPlayersTurnEnd}
         isDealersTurnEnd={state.isDealersTurnEnd}
+        betAmount={betAmount}
       />
       <Box>{getButtons()}</Box>
     </Box>
