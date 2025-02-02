@@ -1,14 +1,16 @@
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from "@mui/material";
 import React, { useState } from "react";
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { addRankingTable } from "../addRankingTable";
 
 /**
  * ランキングダイアログのコンポーネント。
  * @param {boolean} open ダイアログが開いているかどうか。
  * @param {function} onClose ダイアログを閉じるための関数。
+ * @param {number} money 所持金。
  * @returns {JSX.Element} ランキングダイアログのコンポーネント。
  */
-const RankingDialog = ({ open, onClose }) => {
+const RankingDialog = ({ open, onClose, money }) => {
   const [openInput, setOpenInput] = useState(false);
   const [name, setName] = useState("");
   const navigate = useNavigate();
@@ -22,13 +24,13 @@ const RankingDialog = ({ open, onClose }) => {
     }
   };
 
-  const handleInputClose = () => {
+  const handleInputClose = async () => {
     if (name.trim() === "") {
       alert("ニックネームを入力してください。");
       return;
     }
     setOpenInput(false);
-    // スコアを記録する処理をここに追加
+    await addRankingTable(name, money);
     navigate(`/Ranking`);
   };
 

@@ -1,8 +1,8 @@
-import { Button, Typography, Box } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import ValueBox from "./ValueBox";
 import RankingDialog from "./RankingDialog";
+import ValueBox from "./ValueBox";
 
 /**
  * 結果を表示する画面のコンポーネント。
@@ -57,7 +57,7 @@ const Result = () => {
           </Button>
         </Box>
       </Box>
-      <RankingDialog open={openConfirm} onClose={handleCloseConfirm} />
+      <RankingDialog open={openConfirm} onClose={handleCloseConfirm} money={money} />
     </Box>
   );
 };
