@@ -3,11 +3,13 @@ import React, { useState } from "react";
 import BlackJack from "./BlackJack";
 import SettingButton from "./components/SettingButton";
 import ValueBox from "./components/ValueBox";
+import { useNavigate } from "react-router-dom";
 import "./styles.css";
 
 const StartMenu = () => {
   const [isGameStart, setIsGameStart] = useState(false);
   const [betAmount, setBetAmount] = useState(1000);
+  const navigate = useNavigate();
 
   const handleBetAmountChange = (event, value) => {
     setBetAmount(value);
@@ -38,6 +40,16 @@ const StartMenu = () => {
               <Box mx={1}>
                 <ValueBox text={`所持金：${100000}`} />
               </Box>
+            </Box>
+            <Box mt={1} display="flex" flexDirection="row" justifyContent="space-around">
+              <Button
+                variant="contained"
+                onClick={() => {
+                  navigate(`/Ranking`);
+                }}
+              >
+                ランキング
+              </Button>
             </Box>
           </>
         )}
