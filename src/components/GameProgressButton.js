@@ -1,6 +1,6 @@
 import { Box, Button } from "@mui/material";
 import React from "react";
-import EndButton from "./EndBurron";
+import EndButton from "./EndButton";
 import SettingButton from "./SettingButton";
 import ValueBox from "./ValueBox";
 
