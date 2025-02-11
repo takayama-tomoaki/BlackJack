@@ -20,7 +20,7 @@ const RankingDialog = ({ open, onClose, money }) => {
     if (shouldRecord) {
       setOpenInput(true);
     } else {
-      navigate(`/Ranking`);
+      navigate(`/`);
     }
   };
 
@@ -31,11 +31,6 @@ const RankingDialog = ({ open, onClose, money }) => {
     }
     setOpenInput(false);
     await addRankingTable(name, money);
-    navigate(`/Ranking`);
-  };
-
-  const handleCancel = () => {
-    setOpenInput(false);
     navigate(`/Ranking`);
   };
 
@@ -70,10 +65,7 @@ const RankingDialog = ({ open, onClose, money }) => {
             inputProps={{ maxLength: 10 }}
           />
         </DialogContent>
-        <DialogActions style={{ justifyContent: "space-between" }}>
-          <Button onClick={handleCancel} color="secondary">
-            スコアを記録せずランキングを確認する
-          </Button>
+        <DialogActions>
           <Button onClick={handleInputClose} color="primary">
             確定
           </Button>
