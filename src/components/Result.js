@@ -42,18 +42,8 @@ const Result = () => {
           <ValueBox text={`所持金：${money}`} />
         </Box>
         <Box mt={5}>
-          <Button
-            variant="contained"
-            onClick={() => {
-              navigate(`/`);
-            }}
-          >
-            スタートへ
-          </Button>
-        </Box>
-        <Box mt={5}>
           <Button variant="contained" onClick={handleClickOpenConfirm}>
-            ランキング
+            スタートへ
           </Button>
         </Box>
       </Box>
